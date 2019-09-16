@@ -1,0 +1,146 @@
+$font-family: 'Roboto', sans-serif;
+
+$title-color: #FFFFFF;
+$text-color-primary: #797979;
+$title-size: 16px;
+
+$separation: 0;
+
+$header-bg: #4aa9eb;
+$header-height: 70px;
+$header-width: 1fr;
+$header-btn-color: #56b2f3;
+$header-btn-color-active: #4d8ec4;
+$header-btn-font-size: 18;
+$header-actions-bg: hsla(0, 100%, 95%, 0.5);
+$header-actions-width: 1 rf;
+$header-actions-height: calc(100% - 20px);
+$header-actions-color: $title-color;
+$header-actions-font-size: 18px;
+$header-icon-size: 35px;
+
+$content-width: 1fr;
+$content-height: 1fr;
+$content-header-height: 80px;
+$content-header-bg: #f2f2f2;
+
+$content-header-user-title-font-size: 20px;
+$content-header-user-title-color: $text-color-primary;
+$content-header-user-title-meta-font-size: 16px;
+$content-header-user-title-meta-color: $text-color-primary;
+$content-header-user-search-font-size: 16px;
+$content-header-user-search-color: $text-color-primary;
+
+$chat-header-bg: #f2f2f2;
+
+$chat-header-user-width: 315px;
+
+$chat-header-user-avatar-size: 50px;
+$chat-header-user-avatar-border-color: #7a7a7a;
+
+$chat-header-user-text-color: #172135;
+$chat-header-user-text-size: 18px;
+
+$chat-header-user-favorite-color: #38acf1;
+$chat-header-user-favorite-size: 15px;
+
+$chat-header-user-status-icon-color: #1bb96c;
+$chat-header-user-status-icon-size: 15px;
+$chat-header-user-status-text-color: #797979;
+$chat-header-user-status-text-size: 14px;
+
+$chat-header-user-location-icon-color: #1bb96c;
+$chat-header-user-location-icon-size: 15px;
+$chat-header-user-location-text-color: #797979;
+$chat-header-user-location-text-size: 14px;
+
+$chat-header-user-search-bg: #e6e6e6;
+$chat-header-user-search-bg-hover: white;
+$chat-header-user-search-icon-size: 40px;
+$chat-header-user-search-icon-color: #797979;
+$chat-header-user-search-icon-bg-hover: #404b5d;
+$chat-header-user-search-text-size: 16px;
+$chat-header-user-search-text-color: #797979;
+
+$chat-header-user-action-text-color-selected: #49a9ea;
+$chat-header-user-action-text-color: #797979;
+$chat-header-user-action-text-size: 14px;
+
+$chat-entry-bg: #7a7a7a;
+$chat-entry-action-icon-color: #7a7a7a;
+$chat-entry-input-bg: white;
+$chat-entry-input-border-color: #ebebeb;
+
+$chat-bg: #ffffff;
+$chat-entry-bg: #f1f1f1;
+$chat-entry-user-avatar-size: 50px;
+$chat-entry-user-avatar-border-color: #7a7a7a;
+$chat-entry-user-emitter-avatar-border-color: #f1f1f1;
+
+$chat-entry-action-icon-bg: #ffffff;
+$chat-entry-action-icon-color: #777777;
+$chat-entry-action-icon-color-hover: #49a9ea;
+$chat-entry-action-icon-size: 20px;
+
+$chat-commit-bg: #f1f1f1;
+$chat-commit-bg-emitter: #1bb96c;
+$chat-commit-user-avatar-size: 35px;
+$chat-commit-user-conversation-size: 15px;
+$chat-commit-user-conversation-color: #000;
+$chat-commit-user-name-size: 16px;
+$chat-commit-user-name-color: #000;
+$chat-commit-user-date-size: 12px;
+$chat-commit-user-date-color: #797979;
+$chat-commit-user-message-size: 14px;
+$chat-commit-user-emitter-date-color: #e6e6e6;
+$chat-commit-user-emitter-message-color: #f1f1f1;
+$chat-commit-user-message-color: #000000;
+
+$menu-bg: #404b5d;
+$menu-width: 275px;
+$menu-height: 1fr;
+
+$menu-separator-size: 2px;
+
+$menu-user-info-width: 100%;
+$menu-user-info-bg: #ebebeb;
+$menu-user-info-title-color: #CCCCCC;
+$menu-user-info-module-bg: #141c2d;
+
+$menu-favorites-title-size: 16px;
+$menu-favorites-title-color: #e6e6e6;
+$menu-favorites-status-active-bg: #1bb96c;
+$menu-favorites-status-inactive-bg: #8890a3;
+$menu-favorites-status-sleep-bg: #c9cbce;
+
+$menu-favorites-user-active-bg: #ebebeb;
+$menu-favorites-user-hover-bg: #404b5d;
+
+$menu-favorites-user-status-size: 15px;
+
+$menu-favorites-user-avatar-size: 35px;
+$menu-favorites-user-avatar-bg: #ebebeb;
+
+$menu-favorites-user-name-color: #cccccc;
+$menu-favorites-user-name-color-active: #172135;
+$menu-favorites-user-name-size: 14px;
+
+$menu-favorites-user-btn-size: 40px;
+$menu-favorites-user-btn-color: #797979;
+$menu-favorites-user-btn-hover-color: #e6e6e6;
+$menu-favorites-user-btn-hover-bg: #8890a3;
+
+$menu-search-height: 40px;
+$menu-search-bg: #e6e6e6;
+$menu-search-bg-hover: white;
+$menu-search-entry-font-size: 16px;
+$menu-search-entry-color: #797979;
+$menu-search-icon-size: $menu-search-height;
+$menu-search-icon-color: #797979;
+$menu-search-icon-color-hover: #e6e6e6;
+
+$menu-channel-title-font-size: 16px;
+$menu-channel-title-color: #e6e6e6;
+$menu-channel-user-title-font-size: 14px;
+$menu-channel-user-title-color: #CCCCCC;
+$menu-channel-user-avatar-size: 35px;

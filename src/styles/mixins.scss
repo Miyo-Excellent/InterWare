@@ -1,0 +1,454 @@
+@import "vars";
+
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }
+}
+
+@mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }
+}
+
+@mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }
+}
+
+@mixin border($color: red) {
+    border: 1px solid $color;
+}
+
+@mixin flex($display: flex, $justify-content: center, $align-items: center, $flex-direction: column) {
+    display: $display;
+    flex-direction: $flex-direction;
+    justify-content: $justify-content;
+    align-items: $align-items;
+}
+
+@mixin menu-module-title() {
+    margin: 10px auto 20px auto;
+    @include flex();
+
+    .text {
+        width: 100%;
+        font-size: $menu-favorites-title-size;
+        color: $menu-favorites-title-color;
+    }
+}
+
+@mixin menu-module-title-text() {
+    width: 100%;
+    font-size: $menu-favorites-title-size;
+    color: $menu-favorites-title-color;
+}
+
+@mixin users-list() {
+    @include flex($flex-direction: column);
+}
+
+@mixin recent-list() {
+    @include flex($flex-direction: column);
+}
+
+@mixin channels-list() {
+    @include flex($flex-direction: column);
+}
+
+@mixin people-list() {
+    @include flex($flex-direction: column);
+}
+
+@mixin channel($selected: true) {
+    width: 100%;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0 0 0 20px;
+    @include flex($flex-direction: row, $justify-content: flex-start);
+
+    &:hover {
+        background: $menu-favorites-user-hover-bg;
+
+        .fullname {
+            .text {
+                color: $menu-favorites-user-name-color !important;
+            }
+        }
+
+        .btn {
+            .icon {
+                color: $menu-favorites-user-btn-hover-color !important;
+            }
+        }
+    }
+
+    @if ($selected) {
+        &-selected {
+            background: $menu-favorites-user-active-bg;
+
+            .fullname {
+                .text {
+                    color: $menu-favorites-user-name-color-active !important;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin: auto;
+    }
+
+    .hash {
+        height: 45px;
+        margin: auto 20px auto auto;
+        @include flex();
+
+        .text {
+            width: 100%;
+            padding: 0 0 0 15px;
+            color: $menu-favorites-user-name-color;
+            font-size: $menu-favorites-user-name-size + 5;
+            font-weight: bolder;
+        }
+    }
+
+    .name {
+        flex: 1;
+        @include flex();
+
+        .text {
+            width: 100%;
+            padding: 0 0 0 15px;
+            color: $menu-favorites-user-name-color;
+            font-size: $menu-favorites-user-name-size;
+        }
+    }
+}
+
+@mixin user($selected: true) {
+    width: 100%;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0 0 0 20px;
+    @include flex($flex-direction: row, $justify-content: flex-start);
+
+    &:hover {
+        background: $menu-favorites-user-hover-bg;
+
+        .fullname {
+            .text {
+                color: $menu-favorites-user-name-color !important;
+            }
+        }
+
+        .btn {
+            .icon {
+                color: $menu-favorites-user-btn-hover-color !important;
+            }
+        }
+    }
+
+    @if ($selected) {
+        &-selected {
+            background: $menu-favorites-user-active-bg;
+
+            .fullname {
+                .text {
+                    color: $menu-favorites-user-name-color-active !important;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin: auto;
+    }
+
+    .status {
+        width: $menu-favorites-user-status-size;
+        height: $menu-favorites-user-status-size;
+        border-radius: $menu-favorites-user-status-size / 2;
+        overflow: hidden;
+        margin: 0 10px 0 0;
+        @include flex();
+
+        & > * {
+            width: 100%;
+            height: 100%;
+        }
+
+        .active {
+            background: $menu-favorites-status-active-bg;
+        }
+
+        .inactive {
+            background: $menu-favorites-status-inactive-bg;
+        }
+
+        .sleep {
+            background: $menu-favorites-status-sleep-bg;
+        }
+    }
+
+    .avatar {
+        width: $menu-favorites-user-avatar-size;
+        height: $menu-favorites-user-avatar-size;
+        overflow: hidden;
+        border-radius: $menu-favorites-user-avatar-size / 2;
+        background: $menu-favorites-user-avatar-bg;
+        @include flex();
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    .fullname {
+        flex: 1;
+        @include flex();
+
+        .text {
+            width: 100%;
+            padding: 0 0 0 15px;
+            color: $menu-favorites-user-name-color;
+            font-size: $menu-favorites-user-name-size;
+        }
+    }
+
+    .btn {
+        width: $menu-favorites-user-btn-size;
+        height: $menu-favorites-user-btn-size;
+        margin: auto auto auto 10px;
+        cursor: pointer;
+        border-radius: 0 3px 3px 0;
+        overflow: hidden;
+        @include flex();
+
+        &:hover {
+            background: $menu-favorites-user-btn-hover-bg;
+
+            .icon {
+                color: $menu-favorites-user-btn-hover-color;
+            }
+        }
+
+        .icon {
+            font-size: $menu-favorites-user-btn-size * 0.6;
+            color: $menu-favorites-user-btn-color;
+        }
+    }
+}
+
+@mixin recent($selected: true) {
+    width: 100%;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0 0 0 20px;
+    @include flex($flex-direction: row, $justify-content: flex-start);
+
+    &:hover {
+        background: $menu-favorites-user-hover-bg;
+
+        .fullname {
+            .text {
+                color: $menu-favorites-user-name-color !important;
+            }
+        }
+
+        .btn {
+            .icon {
+                color: $menu-favorites-user-btn-hover-color !important;
+            }
+        }
+    }
+
+    @if ($selected) {
+        &-selected {
+            background: $menu-favorites-user-active-bg;
+
+            .fullname {
+                .text {
+                    color: $menu-favorites-user-name-color-active !important;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin: auto;
+    }
+
+    .status {
+        width: $menu-favorites-user-status-size;
+        height: $menu-favorites-user-status-size;
+        border-radius: $menu-favorites-user-status-size / 2;
+        overflow: hidden;
+        margin: 0 10px 0 0;
+        @include flex();
+
+        & > * {
+            width: 100%;
+            height: 100%;
+        }
+
+        .active {
+            background: $menu-favorites-status-active-bg;
+        }
+
+        .inactive {
+            background: $menu-favorites-status-inactive-bg;
+        }
+
+        .sleep {
+            background: $menu-favorites-status-sleep-bg;
+        }
+    }
+
+    .avatar {
+        width: $menu-favorites-user-avatar-size;
+        height: $menu-favorites-user-avatar-size;
+        overflow: hidden;
+        border-radius: $menu-favorites-user-avatar-size / 2;
+        background: $menu-favorites-user-avatar-bg;
+        @include flex();
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    .fullname {
+        flex: 1;
+        @include flex();
+
+        .text {
+            width: 100%;
+            padding: 0 0 0 15px;
+            color: $menu-favorites-user-name-color;
+            font-size: $menu-favorites-user-name-size;
+        }
+    }
+
+    .btn {
+        width: $menu-favorites-user-btn-size;
+        height: $menu-favorites-user-btn-size;
+        margin: auto auto auto 10px;
+        cursor: pointer;
+        border-radius: 0 3px 3px 0;
+        overflow: hidden;
+        @include flex();
+
+        &:hover {
+            background: $menu-favorites-user-btn-hover-bg;
+
+            .icon {
+                color: $menu-favorites-user-btn-hover-color;
+            }
+        }
+
+        .icon {
+            font-size: $menu-favorites-user-btn-size * 0.6;
+            color: $menu-favorites-user-btn-color;
+        }
+    }
+}
+
+@mixin person($selected: true) {
+    width: 100%;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0 0 0 20px;
+    @include flex($flex-direction: row, $justify-content: flex-start);
+
+    &:hover {
+        background: $menu-favorites-user-hover-bg;
+
+        .fullname {
+            .text {
+                color: $menu-favorites-user-name-color !important;
+            }
+        }
+
+        .btn {
+            .icon {
+                color: $menu-favorites-user-btn-hover-color !important;
+            }
+        }
+    }
+
+    @if ($selected) {
+        &-selected {
+            background: $menu-favorites-user-active-bg;
+
+            .fullname {
+                .text {
+                    color: $menu-favorites-user-name-color-active !important;
+                }
+            }
+        }
+    }
+
+    &:last-child {
+        margin: auto;
+    }
+
+    .status {
+        width: $menu-favorites-user-status-size;
+        height: $menu-favorites-user-status-size;
+        border-radius: $menu-favorites-user-status-size / 2;
+        overflow: hidden;
+        margin: 0 10px 0 0;
+        @include flex();
+
+        & > * {
+            width: 100%;
+            height: 100%;
+        }
+
+        .active {
+            background: $menu-favorites-status-active-bg;
+        }
+
+        .inactive {
+            background: $menu-favorites-status-inactive-bg;
+        }
+
+        .sleep {
+            background: $menu-favorites-status-sleep-bg;
+        }
+    }
+
+    .avatar {
+        width: $menu-favorites-user-avatar-size;
+        height: $menu-favorites-user-avatar-size;
+        overflow: hidden;
+        border-radius: $menu-favorites-user-avatar-size / 2;
+        background: $menu-favorites-user-avatar-bg;
+        @include flex();
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    .fullname {
+        flex: 1;
+        @include flex();
+
+        .text {
+            width: 100%;
+            padding: 0 0 0 15px;
+            color: $menu-favorites-user-name-color;
+            font-size: $menu-favorites-user-name-size;
+        }
+    }
+}

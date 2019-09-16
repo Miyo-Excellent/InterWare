@@ -1,0 +1,658 @@
+@import "../../styles/vars";
+@import "../../styles/mixins";
+
+.container {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-gap: $separation;
+    grid-template-columns: $menu-width $content-width;
+    grid-template-rows: $header-height $content-height;
+    overflow: hidden;
+}
+
+.header {
+    background: $header-bg;
+    grid-column: 1/3;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 100%;
+    padding: 10px;
+    overflow: hidden;
+
+
+
+    & > .buttons-group {
+        display: grid;
+        grid-auto-columns: auto;
+        grid-template-rows: 100%;
+        grid-gap: 10px;
+        height: 100%;
+        width: 100%;
+        padding: 10px 0;
+
+        .btn {
+            & {
+                @include flex();
+                background: $header-btn-color;
+                padding: 0 10px;
+                border-radius: 3px;
+                color: white;
+                font-size: $header-btn-font-size;
+                cursor: pointer;
+
+                &:hover {
+                    background: $header-btn-color-active;
+                }
+            }
+
+            &:nth-child(1) {
+                grid-row: 1;
+                grid-column: 1;
+            }
+
+            &:nth-child(2) {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            &:nth-child(3) {
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            background: none;
+        }
+    }
+
+    & > .title {
+        @include flex();
+
+        .text {
+            color: white;
+        }
+    }
+
+    & > .actions {
+        @include flex(
+            $flex-direction: row,
+            $justify-content: space-around
+        );
+
+        .btn {
+            @include flex();
+            width: $header-icon-size;
+            height: $header-icon-size;
+            padding: 3px;
+            margin: 0 5px;
+            background: $header-btn-color;
+            border-radius: $header-icon-size / 2;
+            overflow: hidden;
+
+            &:hover {
+                background: $header-btn-color-active;
+            }
+
+            .img {
+                width: 100%;
+                height: 100%;
+                border-radius: $header-icon-size / 2;
+            }
+
+            .icon {
+                font-size: $header-actions-font-size;
+                color: $header-actions-color;
+            }
+        }
+    }
+}
+
+.menu {
+    background: $menu-bg;
+    grid-column: 1/1;
+    grid-row: 2;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto auto auto auto 1fr;
+    grid-template-columns: 100%;
+    grid-gap: $menu-separator-size;
+    overflow-y: auto;
+
+    & > * {
+        background: $menu-user-info-module-bg;
+        padding: 10px;
+    }
+
+    & > .user-bg {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 0;
+
+        .img {
+            width: 100%;
+        }
+    }
+
+    & > .search {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+
+        .wrapper {
+            background: $menu-search-bg;
+            grid-column: 1;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: 1fr $menu-search-icon-size;
+            grid-template-rows: $menu-search-height;
+            border-radius: 4px;
+
+            &:hover {
+                background: $menu-search-bg-hover;
+            }
+
+            .entry {
+                grid-column: 1;
+                grid-row: 1;
+                @include flex();
+
+                .input {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    background: none;
+                    font-size: $menu-search-entry-font-size;
+                    color: $menu-search-entry-color;
+                    padding: 2px 5px;
+                }
+            }
+
+            .btn {
+                grid-column: 2;
+                grid-row: 1;
+                border-radius: 0 2px 2px 0;
+                cursor: pointer;
+                overflow: hidden;
+                @include flex();
+
+                &:hover {
+                    background: $menu-bg;
+
+                    .icon {
+                        color: $menu-search-icon-color-hover;
+                    }
+                }
+
+                .icon {
+                    font-size: $menu-search-icon-size * 0.6;
+                    color: $menu-search-icon-color;
+                }
+            }
+        }
+    }
+
+    & > .favorites {
+        .title {
+            @include menu-module-title();
+
+            .text {
+                @include menu-module-title-text();
+            }
+        }
+
+        .users-list {
+            @include users-list();
+
+            .user {
+                @include user($selected: true);
+            }
+        }
+    }
+
+    & > .recent {
+        .title {
+            @include menu-module-title();
+
+            .text {
+                @include menu-module-title-text();
+            }
+        }
+
+        .recent-list {
+            @include recent-list();
+
+            .recent {
+                @include recent($selected: false);
+            }
+        }
+    }
+
+    & > .channels {
+        .title {
+            @include menu-module-title();
+
+            .text {
+                @include menu-module-title-text();
+            }
+        }
+
+        .channel-list {
+            @include channels-list();
+
+            .channel {
+                @include channel($selected: false);
+            }
+        }
+    }
+
+    & > .people {
+        .title {
+            @include menu-module-title();
+
+            .text {
+                @include menu-module-title-text();
+            }
+        }
+
+        .people-list {
+            @include people-list();
+
+            .person {
+                @include person($selected: false);
+            }
+        }
+    }
+}
+
+.chat {
+    grid-column: 2/3;
+    grid-row: 2;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 60px 1fr 70px;
+
+    & > .header {
+        grid-column: 1;
+        grid-row: 1;
+        background: $chat-header-bg;
+        display: grid;
+        grid-template-columns: ($chat-header-user-avatar-size + 20) auto 1fr auto;
+        grid-template-rows: 100%;
+        padding: 0 0 0 20px;
+
+        .photothumb {
+            grid-column: 1;
+            grid-row: 1;
+            margin: auto;
+            height: $chat-header-user-avatar-size;
+            width: $chat-header-user-avatar-size;
+            overflow: hidden;
+            border-radius: $chat-header-user-avatar-size / 2;
+            border: solid 2px $chat-header-user-avatar-border-color;
+
+            .img {
+                width: 100%;
+            }
+        }
+
+        .meta {
+            grid-column: 2;
+            grid-row: 1;
+            display: grid;
+            grid-column-gap: 5px;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: auto 1fr;
+
+            .fullname {
+                grid-column: 1/4;
+                grid-row: 1;
+                padding: 5px 10px;
+
+                .text {
+                    color: $chat-header-user-text-color;
+                    font-size: $chat-header-user-text-size;
+                }
+            }
+
+            .favorite {
+                grid-column: 1;
+                grid-row: 2;
+                @include flex();
+
+                .icon {
+                    font-size: $chat-header-user-favorite-size;
+                    color: $chat-header-user-favorite-color;
+                }
+            }
+
+            .status {
+                grid-column: 2;
+                grid-row: 2;
+                @include flex($flex-direction: row);
+
+                .icon {
+                    width: $chat-header-user-status-icon-size;
+                    height: $chat-header-user-status-icon-size;
+                    border-radius: $chat-header-user-status-icon-size / 2;
+                    background: $chat-header-user-status-icon-color;
+                    margin: auto 10px;
+                }
+
+                .text {
+                    color: $chat-header-user-location-text-color;
+                    font-size: $chat-header-user-location-text-size;
+                }
+            }
+
+            .location {
+                grid-column: 3;
+                grid-row: 2;
+                @include flex($flex-direction: row);
+
+                .icon {
+                    @include flex();
+                    margin: auto 10px;
+
+                    .img {
+                        width: 25px;
+                    }
+                }
+
+                .text {
+                    color: $chat-header-user-status-text-color;
+                    font-size: $chat-header-user-status-text-size;
+                }
+            }
+        }
+
+        .search {
+            grid-column: 3;
+            grid-row: 1;
+            padding: 0 20px;
+            @include flex($flex-direction: row, $justify-content: flex-end);
+
+            .wrapper {
+                width: auto;
+                min-width: 375px;
+                background: $chat-header-user-search-bg;
+                display: grid;
+                grid-template-columns: 1fr $menu-search-icon-size;
+                grid-template-rows: $menu-search-height;
+                border-radius: 4px;
+
+                &:hover {
+                    background: $chat-header-user-search-bg-hover;
+                }
+
+                .entry {
+                    grid-column: 1;
+                    grid-row: 1;
+                    @include flex();
+
+                    .input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        background: none;
+                        font-size: $chat-header-user-search-text-size;
+                        color: $chat-header-user-search-text-color;
+                        padding: 2px 5px;
+                    }
+                }
+
+                .btn {
+                    grid-column: 2;
+                    grid-row: 1;
+                    border-radius: 0 2px 2px 0;
+                    cursor: pointer;
+                    overflow: hidden;
+                    @include flex();
+
+                    &:hover {
+                        background: $chat-header-user-search-icon-bg-hover;
+
+                        .icon {
+                            color: $menu-search-icon-color-hover;
+                        }
+                    }
+
+                    .icon {
+                        font-size: $chat-header-user-search-icon-size * 0.6;
+                        color: $chat-header-user-search-icon-color;
+                    }
+                }
+            }
+        }
+
+        .actions {
+            grid-column: 4;
+            grid-row: 1;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            grid-template-rows: 100%;
+
+            .action {
+                margin: auto 10px auto auto;
+                padding: 5px 10px;
+                @include flex($flex-direction: row);
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &:nth-child(1) {
+                    grid-row: 1;
+                    grid-column: 1;
+                }
+
+                &:nth-child(2) {
+                    grid-row: 1;
+                    grid-column: 2;
+                }
+
+                &:nth-child(3) {
+                    grid-row: 1;
+                    grid-column: 3;
+                }
+
+                &-selected {
+                    border: solid 2px $chat-header-user-action-text-color-selected;
+                    border-width: 0 0 2px 0;
+
+                    .icon {
+                        color: $chat-header-user-action-text-color-selected !important;
+                    }
+
+                    .text {
+                        color: $chat-header-user-action-text-color-selected !important;
+                    }
+                }
+
+                .icon {
+                    color: $chat-header-user-action-text-color;
+                    font-size: $chat-header-user-action-text-size;
+                    margin: auto 10px auto auto;
+                }
+
+                .text {
+                    font-size: $chat-header-user-action-text-size;
+                    color: $chat-header-user-action-text-color;
+                }
+            }
+        }
+    }
+
+    & > .commits {
+        grid-column: 1;
+        grid-row: 2;
+        background: $chat-bg;
+        padding: 0 10px;
+        overflow-y: auto !important;
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: nowrap;
+
+        .commit {
+            min-width: 65%;
+            border-radius: 3px;
+            background: $chat-commit-bg;
+            display: grid;
+            grid-template-columns: ($chat-commit-user-avatar-size + 20) 1fr auto;
+            grid-template-rows: ($chat-commit-user-avatar-size + 20) 1fr;
+            margin: 0 0 10px 0;
+
+            &-start {
+                align-self: flex-end;
+
+                background: $chat-commit-bg-emitter;
+
+                .photothumb {
+                    border-color: $chat-entry-user-emitter-avatar-border-color !important;
+                }
+
+                .content {
+                    .date {
+                        .text {
+                            color: $chat-commit-user-emitter-date-color !important;
+                        }
+                    }
+                    .message {
+                        .text {
+                            color: $chat-commit-user-emitter-message-color !important;
+                        }
+                    }
+                }
+            }
+
+            &-end {
+                align-self: flex-start;
+            }
+
+            .photothumb {
+                grid-column: 1;
+                grid-row: 1;
+                margin: auto;
+                height: $chat-commit-user-avatar-size;
+                width: $chat-commit-user-avatar-size;
+                overflow: hidden;
+                border-radius: $chat-commit-user-avatar-size / 2;
+                border: solid 2px $chat-header-user-avatar-border-color;
+
+                .img {
+                    width: 100%;
+                }
+            }
+
+            .content {
+                @include flex($align-items: flex-start);
+
+                .date {
+                    margin: 0 0 2px 0;
+                    @include flex($flex-direction: row, $justify-content: flex-start);
+
+                    .text {
+                        font-size: $chat-commit-user-date-size;
+                        color: $chat-commit-user-date-color;
+                    }
+                }
+
+                .message {
+                    @include flex($flex-direction: row, $justify-content: flex-start);
+
+                    .text {
+                        font-size: $chat-commit-user-message-size;
+                        color: $chat-commit-user-message-color;
+                    }
+                }
+            }
+        }
+    }
+
+    & > .entry {
+        padding: 0 0 0 30px;
+        grid-column: 1;
+        grid-row: 3;
+        background: $chat-entry-bg;
+        display: grid;
+        grid-template-columns: ($chat-entry-user-avatar-size + 20) 1fr auto;
+        grid-template-rows: 100%;
+
+        .photothumb {
+            margin: auto;
+            height: $chat-entry-user-avatar-size;
+            width: $chat-entry-user-avatar-size;
+            overflow: hidden;
+            border-radius: $chat-entry-user-avatar-size / 2;
+            border: solid 2px $chat-entry-user-avatar-border-color;
+            @include flex();
+
+            .img {
+                width: 100%;
+            }
+        }
+
+        .commit-entry {
+            padding: 0 10px;
+            @include flex();
+
+            .wrapper {
+                width: 100%;
+                background: $menu-search-bg;
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: $menu-search-height;
+                border-radius: 4px;
+
+                &:hover {
+                    background: $menu-search-bg-hover;
+                }
+
+                .entry {
+                    grid-column: 1;
+                    grid-row: 1;
+                    @include flex();
+
+                    .input {
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        background: none;
+                        font-size: $menu-search-entry-font-size;
+                        color: $menu-search-entry-color;
+                        padding: 2px 5px;
+                    }
+                }
+            }
+        }
+
+        .actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 100%;
+
+            .action {
+                padding: 10px;
+                margin: auto 5px auto auto;
+                @include flex();
+
+                &:hover {
+                    cursor: pointer;
+                    background: $chat-entry-action-icon-bg;
+                    border-radius: 100%;
+
+                    .icon {
+                        color: $chat-entry-action-icon-color-hover;
+                    }
+                }
+
+                .icon {
+                    color: $chat-entry-action-icon-color;
+                    font-size: $chat-entry-action-icon-size;
+                }
+            }
+        }
+    }
+}
