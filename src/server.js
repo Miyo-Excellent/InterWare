@@ -1,7 +1,7 @@
 //  Dependencies
-import express from 'express';
-import morgan from 'morgan';
-import path from 'path';
+const express = require('express');
+const morgan = require('morgan');
+const path = require('path');
 
 //  App
 const app = express();
