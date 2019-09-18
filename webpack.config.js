@@ -226,7 +226,7 @@ else rules.push(
 module.exports = {
   entry: path.resolve(__dirname, "src/index.js"),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
     filename: "bundle.js"
   },
   resolve: {extensions: [".js", ".jsx"]},

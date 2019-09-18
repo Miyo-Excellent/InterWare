@@ -5,6 +5,7 @@ import _ from 'lodash';
 import moment from 'moment';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
+  faBars,
   faRocket,
   faTrophy,
   faUsers,
@@ -50,6 +51,7 @@ class Layout extends Component {
     super(props);
 
     this.state = {
+      showMenu: false,
       commit: ''
     };
 
@@ -125,9 +127,7 @@ class Layout extends Component {
       commits
     } = this.props;
 
-    const {
-      commit
-    } = this.state;
+    const {commit, showMenu} = this.state;
 
     return (
       <div className={styles.container}>
@@ -143,6 +143,10 @@ class Layout extends Component {
           </div>
 
           <div className={styles.actions}>
+            <div className={`${styles.btn} ${styles['btn-menu']}`} onClick={() => this.setState({showMenu: !showMenu})}>
+              <FontAwesomeIcon className={styles.icon} icon={faBars}/>
+            </div>
+
             <div className={styles.btn}>
               <FontAwesomeIcon className={styles.icon} icon={faRocket}/>
             </div>
@@ -161,7 +165,15 @@ class Layout extends Component {
           </div>
         </header>
 
-        <aside className={styles.menu}>
+        <aside className={`${styles.menu} ${styles[showMenu ? 'menu-active' : 'menu-inactive']}`}>
+          {/* <UserBackgroundImage> */}
+          <div className={styles['close-menu']} onClick={() => this.setState({showMenu: !showMenu})}>
+            <div className={styles.wrapper}>
+              <FontAwesomeIcon className={styles.icon} icon={faBars}/>
+            </div>
+          </div>
+          {/* <UserBackgroundImage> */}
+
           {/* <UserBackgroundImage> */}
           <div className={styles['user-bg']}>
             <img className={styles.img} src={user.backgroundImage} alt="Imagen de fondo"/>
@@ -417,7 +429,7 @@ class Layout extends Component {
                   <input
                     className={styles.input}
                     type="text"
-                    placeholder="Buscar un mensage"
+                    placeholder="Escribe tu mensage"
                     value={commit}
                     onChange={({currentTarget}) => this.setState({commit: currentTarget.value})}
                     onKeyPress={this.setCommit}
